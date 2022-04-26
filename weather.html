@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>weather</title>
+</head>
+<body>
+    <style>
+        .main{
+            /* display: flex;
+            justify-content: center; */
+            /* align-items: center; */
+            border-radius: 10px;
+            box-shadow: 0rem 1rem 1rem 0 cadetblue;
+            position: relative;
+            left: 40%;
+            margin-top:  1%;
+            width: 20vw;
+            height: 50vh;
+            background-color: cornflowerblue;
+        }
+        .show{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            right: 5%;
+            font-size: 25px;
+            font-weight: bold;
+            
+        }
+        .input{
+            margin-top: 5px;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 8px;
+            margin-left: 1.2rem;
+            border-radius: 10px;
+        }
+        ul{
+            text-decoration: none;
+        }
+        .search{
+            margin-top: 5px;
+            padding: 8px;
+            border-radius: 1rem;
+            /* background-color: darkcyan; */
+
+        }
+        .search:hover{
+            background-color: black;
+            color: aliceblue;
+            font-size: 15px;
+            font-weight: bold;
+
+        }
+        .h{
+            position: relative;
+            left: 43%;
+        }
+    </style>
+     <h1 class="h">Weather-App</h1>
+<main class="main">
+   
+    <div  >
+         <input type="search" class="input" id="in" name="searchbox">
+         <button class="search" id="myitem">Search</button>
+         
+    </div>
+    <div class="show" id="show"></div>
+</main>
+   
+
+    <script>
+    document.getElementById("myitem").onclick=()=>{
+       var s = document.getElementById("in").value
+        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${s}&units=metric&appid=64774be52898ce4b4c740c13673580a4`)
+        .then(data => data.json()).then(res=>{
+            console.log(res.name)
+            document.getElementById("show").innerHTML=`
+            <ul>
+                 <li>Name:${res.name}</li>
+                <li>Temp:${res.main.temp}</li>
+                 <li>Desc:${res.weather[0].description}</li>
+                 <li>Pressure:${res.main.pressure}</li>
+            </ul> `
+        })
+    }
+
+
+
+    </script>
+</body>
+</html>
